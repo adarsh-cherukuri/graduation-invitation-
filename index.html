@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light" />
+<link rel="icon" href="data:," />
+<title>Graduation Invitation — Adarsh Cherukuri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fdf8ec;
+    --cream-2:#f7ecd2;
+    --paper:#fffdf6;
+    --gold:#b9975b;
+    --gold-light:#d9bc7a;
+    --gold-pale:#efe0b8;
+    --gold-deep:#8a6d2f;
+    --ink:#2b2416;
+    --ink-soft:#5c5138;
+    --navy:#13294b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Jost",system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 15% -5%, #fff3cf 0%, transparent 55%),
+      radial-gradient(900px 600px at 90% 110%, #f3dfae 0%, transparent 50%),
+      linear-gradient(180deg,#fdf8ec 0%,#f8eed3 52%,#f3e5c0 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  button,[role="button"],a.btn{min-height:48px}
+  /* ---------- ambient background ---------- */
+  .ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .dust{position:absolute;border-radius:50%;background:radial-gradient(circle,#e8c979 0%,rgba(232,201,121,0) 70%);opacity:.55;animation:drift linear infinite}
+  @keyframes drift{0%{transform:translateY(20px) translateX(0)}50%{transform:translateY(-26px) translateX(14px)}100%{transform:translateY(20px) translateX(0)}}
+  .bg-cap{position:absolute;color:#c9a85e;opacity:.13;animation:bob 7s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-16px) rotate(5deg)}}
+  .bg-cap.drift{animation-name:bobDrift}
+  @keyframes bobDrift{0%,100%{transform:translate(0,0) rotate(4deg)}50%{transform:translate(-20px,-24px) rotate(-7deg)}}
+  .ambient::before{content:"";position:absolute;inset:-20%;background:radial-gradient(520px 340px at 28% 28%,rgba(255,240,200,.55),transparent 60%),radial-gradient(580px 400px at 76% 72%,rgba(217,188,122,.38),transparent 60%);animation:sheenMove 15s ease-in-out infinite alternate}
+  @keyframes sheenMove{from{transform:translate(-3%,-2%) scale(1)}to{transform:translate(3%,3%) scale(1.09)}}
+  .spark{position:absolute;color:#d9a83f;pointer-events:none;animation:twinkle ease-in-out infinite;z-index:2}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scale(.35) rotate(0deg)}50%{opacity:.95;transform:scale(1.15) rotate(35deg)}}
+  #rain{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
+  .rain-piece{position:absolute;top:-4vh;will-change:transform,opacity}
+
+  .stage{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:28px 18px 40px;display:flex;flex-direction:column;align-items:center}
+
+  /* ---------- video chrome ---------- */
+  .film-top{width:100%;max-width:560px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:8px}
+  .film-top .dot{width:8px;height:8px;border-radius:50%;background:#c0392b;display:inline-block;margin-right:7px;animation:blink 1.6s infinite;vertical-align:1px}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+  .progress{width:100%;max-width:560px;height:4px;background:rgba(185,151,91,.25);border-radius:99px;overflow:hidden;margin-bottom:26px}
+  .progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));background-size:200% 100%;border-radius:99px;transition:width .3s linear;animation:barShimmer 1.6s linear infinite}
+  @keyframes barShimmer{to{background-position:-200% 0}}
+
+  /* ---------- name step ---------- */
+  #scene-name{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
+  #scene-name.hide{display:none}
+  .name-panel{margin-top:30px;width:min(88vw,400px);background:linear-gradient(180deg,#fffdf6,#fdf6df);border:1px solid var(--gold-light);box-shadow:0 18px 44px rgba(101,79,25,.22),0 4px 12px rgba(101,79,25,.12);padding:10px}
+  .name-panel-inner{border:1.5px solid var(--gold);outline:1px solid var(--gold-pale);outline-offset:5px;padding:28px 24px 26px;display:flex;flex-direction:column;align-items:center}
+  .name-panel .mini-cap{color:var(--gold-deep)}
+  .name-title{font-family:"Playfair Display",serif;font-weight:700;font-size:24px;color:var(--ink);margin:10px 0 4px}
+  .name-text{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;line-height:1.4;color:var(--ink-soft);margin:0 0 18px}
+  .name-form{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+  .name-label{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  .name-input{width:100%;max-width:300px;font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:600;text-align:center;color:var(--ink);background:#fffef9;border:1.5px solid var(--gold-light);border-radius:10px;padding:12px 14px;outline:none;transition:border-color .2s,box-shadow .2s}
+  .name-input::placeholder{color:#b3a67f;font-weight:500}
+  .name-input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(217,188,122,.25)}
+  .name-error{margin:0;font-size:13px;color:#a03428}
+  .name-btn{margin-top:2px}
+
+  /* ---------- envelope scene ---------- */
+  #scene-envelope{display:none;flex-direction:column;align-items:center;text-align:center;width:100%}
+  #scene-envelope.show{display:flex}
+  .pre-title{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(22px,5.4vw,30px);color:var(--ink-soft);margin:6px 0 2px}
+  .pre-head{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(30px,7.6vw,46px);line-height:1.05;color:var(--ink);margin:0 0 8px}
+  .pre-head em{color:var(--gold-deep);font-style:italic}
+  .pre-sub{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin:0 0 34px}
+
+  .envelope-wrap{position:relative;width:min(88vw,380px);height:252px;perspective:1200px;margin:8px 0 6px}
+  .env-shadow{position:absolute;left:6%;right:6%;bottom:-16px;height:26px;background:radial-gradient(ellipse,rgba(90,70,20,.35),transparent 70%);filter:blur(4px)}
+  .env-back{position:absolute;inset:0;background:linear-gradient(160deg,#f3e3ba,#e7d096);border:1px solid #d3b878;border-radius:10px}
+  .env-letter{position:absolute;left:5%;right:5%;top:6%;height:86%;background:var(--paper);border:1px solid var(--gold-pale);border-radius:6px;box-shadow:0 4px 18px rgba(90,70,20,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:14px;transition:transform 1s cubic-bezier(.2,.8,.25,1),opacity .5s;z-index:2}
+  .env-letter .mini-cap{color:var(--gold-deep)}
+  .env-letter p{margin:0;font-family:"Playfair Display",serif;font-weight:700;font-size:19px;color:var(--ink)}
+  .env-letter span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  .env-pocket{position:absolute;inset:0;z-index:3;background:linear-gradient(200deg,#fbf0cd 0%,#eedca6 55%,#e3cb8d 100%);clip-path:polygon(0 32%,50% 66%,100% 32%,100% 100%,0 100%);border-radius:0 0 10px 10px}
+  .env-pocket::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 49.6%,rgba(138,109,47,.35) 50%,transparent 50.4%),linear-gradient(-115deg,transparent 49.6%,rgba(138,109,47,.35) 50%,transparent 50.4%);clip-path:polygon(0 32%,50% 66%,100% 32%,100% 100%,0 100%)}
+  .env-flap{position:absolute;left:0;right:0;top:0;height:52%;z-index:4;background:linear-gradient(180deg,#f6e7bd,#ecd79f);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .85s cubic-bezier(.4,0,.2,1);border-top:1px solid #d3b878;backface-visibility:hidden}
+  .seal{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:5;width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#efd88f,#c9a24f 55%,#96762f);box-shadow:0 6px 16px rgba(90,70,20,.4),inset 0 0 0 3px rgba(255,248,220,.55),inset 0 0 0 6px rgba(120,90,30,.35);display:flex;align-items:center;justify-content:center;color:#fff8dc;transition:transform .5s,opacity .5s;animation:sealPulse 2.2s ease-in-out infinite}
+  @keyframes sealPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+  .seal-glow{position:absolute;left:50%;top:47%;width:118px;height:118px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(233,201,110,.6),rgba(233,201,110,0) 68%);z-index:4;pointer-events:none;animation:glowPulse 2.2s ease-in-out infinite}
+  @keyframes glowPulse{0%,100%{transform:translate(-50%,-50%) scale(.82);opacity:.5}50%{transform:translate(-50%,-50%) scale(1.22);opacity:1}}
+  .envelope-wrap.opening .seal-glow{animation:none;opacity:0;transition:opacity .4s}
+  .mini-float-cap{position:absolute;color:var(--gold);opacity:.9;z-index:6;pointer-events:none;animation:capFloat 4.6s ease-in-out infinite;filter:drop-shadow(0 4px 6px rgba(138,109,47,.3))}
+  @keyframes capFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(7deg)}}
+  .envelope-wrap.opening .env-flap{transform:rotateX(180deg);z-index:1}
+  .envelope-wrap.opening .seal{transform:translate(-50%,-50%) scale(1.5) rotate(18deg);opacity:0;animation:none}
+  .envelope-wrap.opening .env-letter{transform:translateY(-118px) scale(1.04);z-index:2}
+  .envelope-wrap.leaving{animation:envLeave .7s ease forwards}
+  @keyframes envLeave{to{opacity:0;transform:translateY(26px) scale(.94)}}
+  .float-anim{animation:envFloat 3.6s ease-in-out infinite}
+  @keyframes envFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+  .open-btn{position:relative;overflow:hidden;margin-top:34px;display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#caa452,#a37f33);color:#fffdf2;border:0;border-radius:999px;padding:14px 28px;font-family:"Jost",sans-serif;font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 24px rgba(138,109,47,.35);animation:btnGlow 2.6s ease-in-out infinite}
+  @keyframes btnGlow{0%,100%{box-shadow:0 10px 24px rgba(138,109,47,.35)}50%{box-shadow:0 10px 34px rgba(201,162,79,.65),0 0 0 7px rgba(217,188,122,.16)}}
+  .open-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:42%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:shine 3.6s ease-in-out infinite;pointer-events:none}
+  @keyframes shine{0%,55%{left:-60%}88%,100%{left:135%}}
+  .open-btn:active{transform:scale(.98)}
+  .open-btn .play{width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid #fffdf2}
+  .tap-hint{margin-top:14px;font-size:13px;color:var(--ink-soft)}
+  .skip-link{margin-top:6px;background:none;border:0;color:var(--gold-deep);font-family:"Jost",sans-serif;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 14px}
+
+  /* ---------- invitation card ---------- */
+  #scene-card{display:none;width:100%;flex-direction:column;align-items:center}
+  #scene-card.show{display:flex}
+  .card{
+    position:relative;width:min(94vw,500px);aspect-ratio:5/6.9;
+    background:
+      radial-gradient(600px 260px at 50% -60px, #fff6d9 0%, transparent 60%),
+      linear-gradient(180deg,#fffdf6,#fdf6df);
+    border:1px solid var(--gold-light);
+    box-shadow:0 24px 60px rgba(101,79,25,.28),0 4px 14px rgba(101,79,25,.15);
+    padding:10px;
+    animation:cardFloat 7s ease-in-out infinite;
+  }
+  @keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .card-inner{position:relative;height:100%;border:1.5px solid var(--gold);outline:1px solid var(--gold-pale);outline-offset:5px;padding:30px 26px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow:hidden}
+  .corner{position:absolute;width:44px;height:44px;color:var(--gold);opacity:.9}
+  .corner.tl{top:8px;left:8px}.corner.tr{top:8px;right:8px;transform:scaleX(-1)}
+  .corner.bl{bottom:8px;left:8px;transform:scaleY(-1)}.corner.br{bottom:8px;right:8px;transform:scale(-1)}
+
+  .reveal{opacity:0;transform:translateY(18px)}
+  #scene-card.playing .reveal{animation:rise .8s cubic-bezier(.2,.75,.3,1) forwards;animation-delay:calc(var(--d)*1ms)}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+  .cap-hero{margin-top:2px;color:var(--navy)}
+  .tassel{transform-origin:118px 44px;animation:swing 2.6s ease-in-out infinite}
+  @keyframes swing{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-4deg)}50%{transform:rotate(11deg)}75%{transform:rotate(5deg)}}
+  .cap-bob{animation:capBob 3.4s ease-in-out infinite}
+  @keyframes capBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+  .uni{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin:12px 0 0}
+  .dear-line{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:clamp(21px,5.4vw,26px);color:var(--navy);margin:14px 0 0;line-height:1.3}
+  .invite-line{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(19px,4.8vw,23px);color:var(--ink-soft);margin:10px 0 0;line-height:1.35}
+  .grad-name{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(36px,9.4vw,52px);line-height:1.08;color:var(--ink);margin:8px 0 2px}
+  .grad-name .gold-word{background:linear-gradient(120deg,#a37f33,#d9bc7a 55%,#a37f33);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheenText 4.5s linear infinite}
+  @keyframes sheenText{to{background-position:220% center}}
+  .divider{display:flex;align-items:center;gap:10px;margin:14px 0 4px;color:var(--gold)}
+  .divider::before,.divider::after{content:"";height:1px;width:74px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .divider::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .degree{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(20px,5.2vw,25px);color:var(--navy);margin:4px 0 0}
+  .class-of{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin:6px 0 0}
+
+  .details{margin-top:20px;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .detail{background:rgba(255,252,240,.75);border:1px solid var(--gold-pale);border-radius:10px;padding:12px 6px 10px;animation:tileFloat 5.5s ease-in-out infinite}
+  .details .detail:nth-child(2){animation-delay:-1.8s}
+  .details .detail:nth-child(3){animation-delay:-3.6s}
+  @keyframes tileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .detail svg{animation:iconPulse 3s ease-in-out infinite}
+  @keyframes iconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+  .detail svg{color:var(--gold-deep)}
+  .detail b{display:block;font-family:"Playfair Display",serif;font-size:15.5px;color:var(--ink);margin-top:5px;line-height:1.25}
+  .detail span{display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:2px}
+  @media (max-width:420px){ .details{grid-template-columns:1fr} .detail{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 14px} .detail b{margin-top:0} }
+
+  .venue-line{margin:16px 0 0;font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:600;color:var(--ink)}
+  .venue-line small{display:block;font-family:"Jost",sans-serif;font-size:12px;letter-spacing:.08em;color:var(--ink-soft);font-weight:400;margin-top:3px}
+  .venue-link{color:inherit;text-decoration:none}
+  .venue-link:hover{text-decoration:underline;text-underline-offset:3px}
+  .venue-link .addr-link{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
+  .detail-link{text-decoration:none;color:inherit;display:block}
+  .detail-link:hover b{text-decoration:underline;text-underline-offset:3px}
+  .note{margin:14px 4px 0;font-size:12.5px;line-height:1.55;color:var(--ink-soft);max-width:380px}
+  .diploma-row{margin-top:auto;padding-top:16px;display:flex;align-items:center;gap:14px;color:var(--gold-deep)}
+  .thanks{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:17px;color:var(--ink-soft)}
+
+  .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+  a.btn,.replay-btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:13px 24px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+  .replay-btn{background:var(--navy);color:#fdf6df;border:0;box-shadow:0 8px 20px rgba(19,41,75,.3)}
+  a.btn{background:transparent;color:var(--gold-deep);border:1.5px solid var(--gold)}
+  .share-hint{margin-top:16px;font-size:13px;color:var(--ink-soft);text-align:center;max-width:420px;line-height:1.55}
+
+  #confetti{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+  .confetto{position:absolute;top:-4vh;border-radius:2px;will-change:transform,opacity}
+
+  @media (prefers-reduced-motion: reduce){
+    .tassel,.cap-bob,.float-anim,.seal,.dust,.bg-cap,.spark,.seal-glow,.mini-float-cap,.card,.detail,.detail svg,.open-btn,.open-btn::after,.grad-name .gold-word,.progress i,.ambient::before{animation:none !important}
+    .spark{opacity:.5}
+    .reveal{opacity:1;transform:none}
+    #scene-card.playing .reveal{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true">
+  <svg class="bg-cap" style="left:4%;top:10%" width="72" height="52" viewBox="0 0 120 84" fill="currentColor"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+  <svg class="bg-cap" style="right:5%;top:58%;animation-delay:-1.4s" width="96" height="68" viewBox="0 0 120 84" fill="currentColor"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+  <svg class="bg-cap" style="left:8%;bottom:6%;animation-delay:-2.2s" width="54" height="40" viewBox="0 0 120 84" fill="currentColor"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+  <svg class="bg-cap drift" style="right:10%;top:26%;animation-duration:9s;animation-delay:-3s" width="64" height="46" viewBox="0 0 120 84" fill="currentColor"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+  <svg class="bg-cap drift" style="left:16%;top:64%;animation-duration:11s;animation-delay:-5s" width="82" height="58" viewBox="0 0 120 84" fill="currentColor"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+  <svg class="spark" style="left:20%;top:12%;animation-duration:2.6s" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="right:18%;top:8%;animation-duration:3.1s;animation-delay:-1s" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="left:6%;top:44%;animation-duration:2.9s;animation-delay:-.6s" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="right:7%;top:38%;animation-duration:2.4s;animation-delay:-1.7s" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="left:30%;bottom:14%;animation-duration:3.4s;animation-delay:-2.1s" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="right:26%;bottom:22%;animation-duration:2.7s;animation-delay:-.3s" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="left:48%;top:5%;animation-duration:3s;animation-delay:-1.2s" width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <svg class="spark" style="right:44%;bottom:6%;animation-duration:2.5s;animation-delay:-.9s" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+  <span class="dust" style="left:12%;top:22%;width:90px;height:90px;animation-duration:7s"></span>
+  <span class="dust" style="right:14%;top:14%;width:60px;height:60px;animation-duration:9s"></span>
+  <span class="dust" style="left:38%;bottom:10%;width:110px;height:110px;animation-duration:11s"></span>
+  <span class="dust" style="right:30%;top:44%;width:46px;height:46px;animation-duration:8s"></span>
+</div>
+
+<div id="confetti" aria-hidden="true"></div>
+<div id="rain" aria-hidden="true"></div>
+
+<main class="stage">
+  <div class="film-top" aria-hidden="true">
+    <span><span class="dot"></span><span id="filmStatus">Welcome</span></span>
+    <span>Invitation Film</span>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+  <!-- ============ SCENE 0 : GUEST NAME ============ -->
+  <section id="scene-name" aria-label="Enter your name">
+    <p class="pre-title">You are cordially invited to celebrate</p>
+    <h1 class="pre-head">A Graduation<br><em>to Remember</em></h1>
+    <p class="pre-sub">University of Texas at Arlington &nbsp;•&nbsp; Class of 2026</p>
+
+    <div class="name-panel">
+      <div class="name-panel-inner">
+        <svg class="mini-cap" width="52" height="38" viewBox="0 0 120 84" fill="currentColor" aria-hidden="true"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/><path d="M112 38v24" stroke="currentColor" stroke-width="5"/></svg>
+        <h2 class="name-title">Welcome!</h2>
+        <p class="name-text">This invitation was made especially for you. Please tell us your name, and your personal invitation will open.</p>
+        <form class="name-form" id="nameForm" novalidate>
+          <label class="name-label" for="guestName">Enter your name</label>
+          <input class="name-input" id="guestName" type="text" autocomplete="name" placeholder="Enter your name" maxlength="60">
+          <p class="name-error" id="nameError" hidden>Please enter your name so we can personalise your invitation.</p>
+          <button class="open-btn name-btn" type="submit">Continue</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 1 : ENVELOPE ============ -->
+  <section id="scene-envelope" aria-label="Sealed invitation">
+    <p class="pre-title">You are cordially invited to celebrate</p>
+    <h1 class="pre-head">A Graduation<br><em>to Remember</em></h1>
+    <p class="pre-sub">University of Texas at Arlington &nbsp;•&nbsp; Class of 2026</p>
+
+    <div class="envelope-wrap float-anim" id="envelopeWrap">
+      <div class="env-shadow"></div>
+      <div class="env-back"></div>
+      <div class="env-letter">
+        <svg class="mini-cap" width="46" height="34" viewBox="0 0 120 84" fill="currentColor" aria-hidden="true"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/><path d="M112 38v26" stroke="currentColor" stroke-width="5"/></svg>
+        <p>Adarsh Cherukuri</p>
+        <span>Graduation Invitation</span>
+      </div>
+      <div class="env-pocket"></div>
+      <div class="env-flap"></div>
+      <span class="seal-glow" aria-hidden="true"></span>
+      <svg class="mini-float-cap" style="left:-16px;top:2%" width="52" height="38" viewBox="0 0 120 84" fill="currentColor" aria-hidden="true"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/><path d="M112 38v24" stroke="currentColor" stroke-width="5"/></svg>
+      <svg class="mini-float-cap" style="right:-12px;bottom:10%;animation-delay:-2.2s;animation-duration:5.4s" width="42" height="31" viewBox="0 0 120 84" fill="currentColor" aria-hidden="true"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/><path d="M112 38v24" stroke="currentColor" stroke-width="5"/></svg>
+      <div class="seal" aria-hidden="true">
+        <svg width="34" height="26" viewBox="0 0 120 84" fill="#fff8dc" aria-hidden="true"><path d="M60 8 118 34 60 60 2 34Z"/><path d="M26 46v16c0 8 68 8 68 0V46L60 62Z"/></svg>
+      </div>
+    </div>
+
+    <button class="open-btn" id="openBtn" type="button">
+      <span class="play" aria-hidden="true"></span> Open Invitation
+    </button>
+    <p class="tap-hint">Tap play — the envelope opens and your invitation unfolds, just like a video.</p>
+    <button class="skip-link" id="skipBtn" type="button">Skip animation &amp; view invitation</button>
+  </section>
+
+  <!-- ============ SCENE 2 : THE CARD ============ -->
+  <section id="scene-card" aria-label="Graduation invitation card">
+    <div class="card">
+      <div class="card-inner">
+        <svg class="corner tl" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 40 V14 Q4 4 14 4 H40"/><circle cx="10" cy="10" r="2.4" fill="currentColor" stroke="none"/></svg>
+        <svg class="corner tr" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 40 V14 Q4 4 14 4 H40"/><circle cx="10" cy="10" r="2.4" fill="currentColor" stroke="none"/></svg>
+        <svg class="corner bl" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 40 V14 Q4 4 14 4 H40"/><circle cx="10" cy="10" r="2.4" fill="currentColor" stroke="none"/></svg>
+        <svg class="corner br" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 40 V14 Q4 4 14 4 H40"/><circle cx="10" cy="10" r="2.4" fill="currentColor" stroke="none"/></svg>
+        <svg class="spark" style="right:12%;top:9%;animation-duration:2.8s" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+        <svg class="spark" style="left:10%;top:30%;animation-duration:3.2s;animation-delay:-1.4s" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+        <svg class="spark" style="right:9%;bottom:26%;animation-duration:2.5s;animation-delay:-.7s" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+        <svg class="spark" style="left:13%;bottom:10%;animation-duration:3s;animation-delay:-2s" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0 14.5 9.5 24 12 14.5 14.5 12 24 9.5 14.5 0 12 9.5 9.5Z"/></svg>
+
+        <div class="reveal" style="--d:100">
+          <svg class="cap-hero cap-bob" width="132" height="96" viewBox="0 0 140 104" aria-hidden="true">
+            <path d="M70 10 136 40 70 70 4 40Z" fill="#13294b"/>
+            <path d="M70 10 136 40 70 70 4 40Z" fill="none" stroke="#b9975b" stroke-width="2"/>
+            <path d="M32 54v20c0 10 76 10 76 0V54L70 72Z" fill="#1d3a66"/>
+            <ellipse cx="70" cy="40" rx="7" ry="4" fill="#b9975b"/>
+            <g class="tassel">
+              <path d="M129 44v30" stroke="#c9a24f" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="129" cy="80" r="6" fill="#c9a24f"/>
+              <path d="M124 84h10l-2 10h-6Z" fill="#a37f33"/>
+            </g>
+          </svg>
+        </div>
+
+        <p class="uni reveal" style="--d:350">The University of Texas at Arlington</p>
+        <p class="dear-line reveal" style="--d:450">Dear <span id="dearName">Guest</span>,</p>
+        <p class="invite-line reveal" style="--d:550">With great joy and pride, we invite you to the<br>Commencement Ceremony honouring</p>
+
+        <h2 class="grad-name reveal" style="--d:800">Adarsh<br><span class="gold-word">Cherukuri</span></h2>
+
+        <div class="divider reveal" style="--d:1000" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14"><rect x="3.2" y="3.2" width="7.6" height="7.6" transform="rotate(45 7 7)" fill="#b9975b"/></svg>
+        </div>
+
+        <p class="degree reveal" style="--d:1100">Master of Science in Data Science</p>
+        <p class="class-of reveal" style="--d:1250">Class of 2026 &nbsp;•&nbsp; College of Science</p>
+
+        <div class="details reveal" style="--d:1450">
+          <div class="detail">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            <div><b>Wed, Dec 2</b><span>2026 • Date</span></div>
+          </div>
+          <div class="detail">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div><b>7:00 PM</b><span>Evening Ceremony</span></div>
+          </div>
+          <div class="detail">
+            <a class="detail-link" href="https://www.google.com/maps/search/?api=1&amp;query=Globe+Life+Field+734+Stadium+Dr+Arlington+TX+76011" target="_blank" rel="noopener" aria-label="Open Globe Life Field in Google Maps">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 1 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <div><b>Globe Life Field</b><span>Tap to open Maps</span></div>
+            </a>
+          </div>
+        </div>
+
+        <p class="venue-line reveal" style="--d:1650"><a class="venue-link" href="https://www.google.com/maps/search/?api=1&amp;query=Globe+Life+Field+734+Stadium+Dr+Arlington+TX+76011" target="_blank" rel="noopener">Globe Life Field
+          <small><span class="addr-link">734 Stadium Drive, Arlington, TX 76011 — Tap to open in Google Maps</span> &nbsp;•&nbsp; General admission seating</small></a>
+        </p>
+
+        <p class="note reveal" style="--d:1800">Guest tickets are delivered electronically through the MLB Ballpark App. Graduates check in at Globe Life Field before the ceremony — no ticket needed for the graduate.</p>
+
+        <div class="diploma-row reveal" style="--d:2000">
+          <svg width="52" height="30" viewBox="0 0 60 34" aria-hidden="true">
+            <rect x="4" y="7" width="46" height="20" rx="9" fill="#fffdf6" stroke="#b9975b" stroke-width="1.6"/>
+            <circle cx="50" cy="17" r="7" fill="#c9a24f"/>
+            <path d="M47 22l-2 9 5-3.4L55 31l-2-9" fill="#a37f33"/>
+          </svg>
+          <span class="thanks">With gratitude to family &amp; friends<br>who made this journey possible</span>
+          <svg width="52" height="30" viewBox="0 0 60 34" aria-hidden="true" style="transform:scaleX(-1)">
+            <rect x="4" y="7" width="46" height="20" rx="9" fill="#fffdf6" stroke="#b9975b" stroke-width="1.6"/>
+            <circle cx="50" cy="17" r="7" fill="#c9a24f"/>
+            <path d="M47 22l-2 9 5-3.4L55 31l-2-9" fill="#a37f33"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="replay-btn" id="replayBtn" type="button">↺ &nbsp;Replay Animation</button>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Globe+Life+Field+734+Stadium+Dr+Arlington+TX+76011" target="_blank" rel="noopener">View Location — Open in Maps</a>
+    </div>
+    <p class="share-hint">Share this link with family &amp; friends — when they open it and tap Play, they will watch the invitation unfold.</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  var nameScene = document.getElementById('scene-name');
+  var envelopeScene = document.getElementById('scene-envelope');
+  var cardScene = document.getElementById('scene-card');
+  var wrap = document.getElementById('envelopeWrap');
+  var bar = document.getElementById('progressBar');
+  var confettiBox = document.getElementById('confetti');
+  var timers = [];
+
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+  function setProgress(pct){ bar.style.width = pct + '%'; }
+
+  var COLORS = ['#b9975b','#d9bc7a','#13294b','#efe0b8','#c0392b','#f3e3ba'];
+  function spawnConfetti(count, spread){
+    for(var i=0;i<count;i++){
+      var el = document.createElement('span');
+      el.className = 'confetto';
+      var size = 6 + Math.random()*8;
+      var isCircle = Math.random() > 0.6;
+      el.style.width = size + 'px';
+      el.style.height = (isCircle ? size : size*0.45) + 'px';
+      el.style.background = COLORS[Math.floor(Math.random()*COLORS.length)];
+      el.style.borderRadius = isCircle ? '50%' : '2px';
+      el.style.left = (spread ? (8 + Math.random()*84) : (42 + Math.random()*16)) + 'vw';
+      confettiBox.appendChild(el);
+      var fall = window.innerHeight * (0.85 + Math.random()*0.5);
+      var sway = (Math.random()*160 - 80);
+      var dur = 2200 + Math.random()*2200;
+      var anim = el.animate([
+        { transform:'translate(0,-4vh) rotate(0deg)', opacity:1 },
+        { transform:'translate(' + (sway*0.5) + 'px,' + (fall*0.55) + 'px) rotate(' + (Math.random()*360) + 'deg)', opacity:1, offset:0.6 },
+        { transform:'translate(' + sway + 'px,' + fall + 'px) rotate(' + (540 + Math.random()*360) + 'deg)', opacity:0 }
+      ], { duration: dur, easing:'cubic-bezier(.2,.6,.4,1)', delay: Math.random()*450, fill:'forwards' });
+      (function(node, a){ a.onfinish = function(){ node.remove(); }; })(el, anim);
+    }
+  }
+
+  function showCard(instant){
+    envelopeScene.style.display = 'none';
+    envelopeScene.classList.remove('show');
+    cardScene.classList.add('show');
+    // restart reveal animations
+    cardScene.classList.remove('playing');
+    void cardScene.offsetWidth;
+    cardScene.classList.add('playing');
+    setProgress(100);
+    window.scrollTo({ top: 0, behavior: instant ? 'auto' : 'smooth' });
+  }
+
+  function playSequence(){
+    clearTimers();
+    document.getElementById('filmStatus').textContent = 'Now Playing';
+    document.getElementById('openBtn').disabled = true;
+    document.getElementById('skipBtn').disabled = true;
+    wrap.classList.remove('float-anim');
+    setProgress(8);
+
+    later(function(){ wrap.classList.add('opening'); setProgress(32); }, 250);
+    later(function(){ setProgress(58); }, 1150);
+    later(function(){ wrap.classList.add('leaving'); setProgress(76); }, 1950);
+    later(function(){
+      showCard(false);
+      spawnConfetti(90, true);
+      later(function(){ spawnConfetti(36, false); }, 700);
+    }, 2650);
+  }
+
+  function skipSequence(){
+    clearTimers();
+    document.getElementById('filmStatus').textContent = 'Invitation';
+    showCard(true);
+    spawnConfetti(40, true);
+  }
+
+  function replay(){
+    clearTimers();
+    document.getElementById('filmStatus').textContent = 'Ready to Play';
+    confettiBox.innerHTML = '';
+    cardScene.classList.remove('show','playing');
+    envelopeScene.style.display = '';
+    envelopeScene.classList.add('show');
+    wrap.classList.remove('opening','leaving');
+    wrap.classList.add('float-anim');
+    document.getElementById('openBtn').disabled = false;
+    document.getElementById('skipBtn').disabled = false;
+    setProgress(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    later(playSequence, 650);
+  }
+
+  /* ---------- continuous gentle gold confetti rain ---------- */
+  var rainBox = document.getElementById('rain');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var RAIN_COLORS = ['#b9975b','#d9bc7a','#e8c979','#efe0b8','#c9a24f'];
+  function spawnRainPiece(){
+    if(!rainBox || document.hidden) return;
+    if(rainBox.childElementCount > 16) return;
+    var el = document.createElement('span');
+    el.className = 'rain-piece';
+    var size = 5 + Math.random()*6;
+    var circle = Math.random() > 0.65;
+    el.style.width = size + 'px';
+    el.style.height = (circle ? size : size*0.5) + 'px';
+    el.style.background = RAIN_COLORS[Math.floor(Math.random()*RAIN_COLORS.length)];
+    el.style.borderRadius = circle ? '50%' : '2px';
+    el.style.left = (Math.random()*98) + 'vw';
+    el.style.opacity = (0.5 + Math.random()*0.4).toFixed(2);
+    rainBox.appendChild(el);
+    var fall = window.innerHeight * 1.12;
+    var sway = Math.random()*90 - 45;
+    var dur = 6500 + Math.random()*4500;
+    var anim = el.animate([
+      { transform:'translate(0,-4vh) rotate(0deg)' },
+      { transform:'translate(' + (sway*0.6) + 'px,' + (fall*0.5) + 'px) rotate(' + (180 + Math.random()*180) + 'deg)', offset:0.5 },
+      { transform:'translate(' + sway + 'px,' + fall + 'px) rotate(' + (420 + Math.random()*240) + 'deg)' }
+    ], { duration: dur, easing:'linear', fill:'forwards' });
+    anim.onfinish = function(){ el.remove(); };
+  }
+  if(!reduceMotion){
+    spawnRainPiece(); spawnRainPiece(); spawnRainPiece();
+    setInterval(spawnRainPiece, 550);
+  }
+
+  /* ---------- guest name step ---------- */
+  var nameForm = document.getElementById('nameForm');
+  var nameInput = document.getElementById('guestName');
+  var nameError = document.getElementById('nameError');
+  nameForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = nameInput.value.trim().replace(/\s+/g, ' ');
+    if(!name){
+      nameError.hidden = false;
+      nameInput.focus();
+      return;
+    }
+    nameError.hidden = true;
+    document.getElementById('dearName').textContent = name;
+    nameScene.classList.add('hide');
+    envelopeScene.classList.add('show');
+    document.getElementById('filmStatus').textContent = 'Ready to Play';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  nameInput.addEventListener('input', function(){ nameError.hidden = true; });
+  nameInput.focus();
+
+  document.getElementById('openBtn').addEventListener('click', playSequence);
+  wrap.addEventListener('click', function(){
+    if(!wrap.classList.contains('opening')) playSequence();
+  });
+  document.getElementById('skipBtn').addEventListener('click', skipSequence);
+  document.getElementById('replayBtn').addEventListener('click', replay);
+})();
+</script>
+</body>
+</html>
